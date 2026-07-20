@@ -8,9 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ============ CONFIG ============ */
-  /* PASTE your Apps Script Web App /exec URL between the quotes below, then commit. */
-  /* ============ TOKENS ============ */
   :root{
     --bg:#f6f3ec; --surface:#ffffff; --surface-2:#faf8f3; --line:#e7e1d5;
     --ink:#1c2024; --ink-2:#5b6068; --ink-3:#8b9099;
@@ -39,7 +36,6 @@
   button{cursor:pointer;border:none;background:none}
   ::placeholder{color:var(--ink-3)}
 
-  /* ============ GATE ============ */
   #gate{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);z-index:100;padding:20px}
   #gate .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
     box-shadow:var(--shadow-lg);padding:38px 34px;width:100%;max-width:380px;text-align:center}
@@ -55,7 +51,6 @@
   #gate button:hover{background:var(--accent-2)}
   #gate .err{color:var(--st-closed);min-height:18px;font-size:13px;margin-top:8px}
 
-  /* ============ SHELL ============ */
   #app{display:none;min-height:100vh}
   header.top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);
     backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -79,20 +74,17 @@
 
   main{max-width:1320px;margin:0 auto;padding:20px 22px 80px}
 
-  /* tabs */
   .tabs{display:flex;gap:4px;margin-bottom:16px}
   .tabs button{padding:8px 4px;font-family:Fraunces,serif;font-size:17px;color:var(--ink-3);
     border-bottom:2px solid transparent;margin-right:20px}
   .tabs button.on{color:var(--ink);border-color:var(--gold)}
 
-  /* stats */
   .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}
   .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
   .stat .n{font-family:Fraunces,serif;font-size:26px;font-weight:600;line-height:1}
   .stat .l{color:var(--ink-2);font-size:12px;margin-top:5px;letter-spacing:.02em}
   .stat .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:1px}
 
-  /* filter chips */
   .filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;align-items:center}
   .filters .lbl{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-right:2px}
   .chip{padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);
@@ -101,7 +93,6 @@
   .chip .cd{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:1px}
   .sep{width:1px;height:22px;background:var(--line);margin:0 4px}
 
-  /* table */
   .tablewrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
   table{width:100%;border-collapse:collapse}
   thead th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);
@@ -117,7 +108,6 @@
   .muted{color:var(--ink-3)}
   td.nowrap{white-space:nowrap}
 
-  /* pills */
   .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12px;
     font-weight:600;border:1px solid transparent;white-space:nowrap}
   .pill .cd{width:7px;height:7px;border-radius:50%}
@@ -127,7 +117,6 @@
   .owner{padding:3px 9px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);
     font-size:12px;font-weight:600;color:var(--ink-2)}
 
-  /* kanban */
   .kanban{display:flex;gap:14px;overflow-x:auto;padding-bottom:10px}
   .kcol{flex:0 0 268px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);
     display:flex;flex-direction:column;max-height:calc(100vh - 260px)}
@@ -147,7 +136,6 @@
   .empty{padding:60px 20px;text-align:center;color:var(--ink-3)}
   .empty .big{font-family:Fraunces,serif;font-size:20px;color:var(--ink-2);margin-bottom:6px}
 
-  /* drawer */
   .scrim{position:fixed;inset:0;background:rgba(20,23,26,.4);z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
   .scrim.on{opacity:1;pointer-events:auto}
   .drawer{position:fixed;top:0;right:0;height:100vh;width:460px;max-width:92vw;background:var(--surface);
@@ -170,7 +158,6 @@
   .dfoot .del{color:var(--st-closed);margin-right:auto;font-weight:600;padding:9px 4px}
   .dfoot .del:hover{text-decoration:underline}
 
-  /* toast */
   #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);z-index:90;
     background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:999px;font-weight:600;font-size:13px;
     box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:.25s}
@@ -192,33 +179,31 @@
 </head>
 <body>
 
-<!-- ============ GATE ============ -->
 <div id="gate">
   <div class="card">
     <div class="mark">Gratia</div>
     <h1>Network CRM</h1>
     <p>Jackie's network · outreach tracker</p>
-    <input id="pw" type="password" placeholder="senha" autocomplete="current-password" autofocus>
-    <button id="enter">Entrar</button>
+    <input id="pw" type="password" placeholder="password" autocomplete="current-password" autofocus>
+    <button id="enter">Enter</button>
     <div class="err" id="gateErr"></div>
   </div>
 </div>
 
-<!-- ============ APP ============ -->
 <div id="app">
   <header class="top">
     <div class="top-in">
       <div class="brand"><span class="k">Gratia · Network</span><span class="t">Jackie's Network</span></div>
       <div class="search">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
-        <input id="q" type="search" placeholder="Buscar nome, empresa, nota…">
+        <input id="q" type="search" placeholder="Search name, company, note…">
       </div>
       <div class="seg" id="viewSeg">
-        <button data-v="table" class="on">Tabela</button>
+        <button data-v="table" class="on">Table</button>
         <button data-v="kanban">Kanban</button>
       </div>
-      <button class="btn" id="refresh" title="Recarregar"><span id="refreshIco">↻</span></button>
-      <button class="btn primary" id="addBtn">＋ Adicionar</button>
+      <button class="btn" id="refresh" title="Reload"><span id="refreshIco">↻</span></button>
+      <button class="btn primary" id="addBtn">＋ Add</button>
     </div>
   </header>
 
@@ -230,32 +215,29 @@
 
     <div id="loading"><span class="spin"></span></div>
 
-    <!-- PEOPLE -->
     <section id="peopleTab" style="display:none">
       <div class="stats" id="stats"></div>
       <div class="filters" id="filters"></div>
       <div id="peopleContent"></div>
     </section>
 
-    <!-- EVENTS -->
     <section id="eventsTab" style="display:none">
       <div id="eventsContent"></div>
     </section>
   </main>
 </div>
 
-<!-- drawer -->
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer">
   <div class="dhead">
-    <span class="dt" id="drawerTitle">Editar</span>
+    <span class="dt" id="drawerTitle">Edit</span>
     <button class="x" id="drawerClose">✕</button>
   </div>
   <div class="dbody" id="drawerBody"></div>
   <div class="dfoot" id="drawerFoot">
-    <button class="del" id="drawerDelete">Excluir</button>
-    <button class="btn" id="drawerCancel">Cancelar</button>
-    <button class="btn primary" id="drawerSave">Salvar</button>
+    <button class="del" id="drawerDelete">Delete</button>
+    <button class="btn" id="drawerCancel">Cancel</button>
+    <button class="btn primary" id="drawerSave">Save</button>
   </div>
 </aside>
 
@@ -263,11 +245,10 @@
 
 <script>
 /* ============================================================
-   CONFIG — paste your Apps Script Web App /exec URL here:
+   CONFIG — Apps Script Web App /exec URL
    ============================================================ */
 var API_URL = "https://script.google.com/macros/s/AKfycby2WvUJZYzHlE08JO3QL7P4rpbk2uGYRgYklnF873wK_L2VGpwPOmsmZB5osGN3Rl8lqA/exec";
 
-/* ---------- option sets (must match Code.gs domain) ---------- */
 var STATUSES = ["Not started","Reached out","Awaiting reply","Meeting scheduled","Met","Follow-up needed","Nurture","Closed / No fit"];
 var ST_COLOR = {
   "Not started":"var(--st-notstarted)","Reached out":"var(--st-reached)","Awaiting reply":"var(--st-await)",
@@ -280,7 +261,6 @@ var PRIOS    = ["","High","Medium","Low"];
 var WARMTH   = ["","Cold","Warm","Hot"];
 var EV_TYPES = ["Breakfast","Lunch","Dinner","Coffee","Conference","Intro","Call"];
 
-/* ---------- state ---------- */
 var pw = sessionStorage.getItem("jcrm_pw") || "";
 var S = {
   people:[], events:[],
@@ -290,15 +270,13 @@ var S = {
   editing:null, editType:"person"
 };
 
-/* ---------- API ---------- */
 function api(action, extra){
   var payload = Object.assign({action:action, pw:pw}, extra||{});
   return fetch(API_URL, { method:"POST", body: JSON.stringify(payload), redirect:"follow" })
     .then(function(r){ return r.json(); })
-    .then(function(j){ if(!j || j.ok===false) throw new Error(j && j.error || "erro"); return j; });
+    .then(function(j){ if(!j || j.ok===false) throw new Error(j && j.error || "error"); return j; });
 }
 
-/* ---------- gate ---------- */
 var $ = function(s){ return document.querySelector(s); };
 function tryEnter(){
   var val = $("#pw").value.trim();
@@ -313,18 +291,17 @@ function tryEnter(){
     boot();
   }).catch(function(e){
     pw="";
-    $("#gateErr").textContent = (String(e.message)==="auth") ? "Senha incorreta." : ("Falhou: "+e.message);
-    $("#enter").textContent = "Entrar";
+    $("#gateErr").textContent = (String(e.message)==="auth") ? "Wrong password." : ("Failed: "+e.message);
+    $("#enter").textContent = "Enter";
   });
 }
 $("#enter").onclick = tryEnter;
 $("#pw").addEventListener("keydown", function(e){ if(e.key==="Enter") tryEnter(); });
-if(pw){ /* auto-try cached */ $("#enter").textContent="…"; api("list").then(function(j){
+if(pw){ $("#enter").textContent="…"; api("list").then(function(j){
   S.people=j.people||[]; S.events=j.events||[];
   $("#gate").style.display="none"; $("#app").style.display="block"; boot();
-}).catch(function(){ pw=""; sessionStorage.removeItem("jcrm_pw"); $("#enter").textContent="Entrar"; }); }
+}).catch(function(){ pw=""; sessionStorage.removeItem("jcrm_pw"); $("#enter").textContent="Enter"; }); }
 
-/* ---------- boot ---------- */
 function boot(){
   $("#loading").style.display="none";
   wireChrome();
@@ -335,7 +312,7 @@ function reload(){
   $("#refreshIco").outerHTML = '<span class="spin" id="refreshIco"></span>';
   api("list").then(function(j){
     S.people=j.people||[]; S.events=j.events||[]; render();
-    toast("Atualizado");
+    toast("Refreshed");
   }).catch(function(e){ toast(e.message,true); })
     .finally(function(){ var el=$("#refreshIco"); if(el) el.outerHTML='<span id="refreshIco">↻</span>'; });
 }
@@ -355,15 +332,13 @@ function wireChrome(){
   document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeDrawer(); });
 }
 
-/* ---------- render root ---------- */
 function render(){
   $("#peopleTab").style.display = S.tab==="people" ? "block":"none";
   $("#eventsTab").style.display = S.tab==="events" ? "block":"none";
-  $("#addBtn").innerHTML = S.tab==="events" ? "＋ Evento" : "＋ Adicionar";
+  $("#addBtn").innerHTML = S.tab==="events" ? "＋ Event" : "＋ Add";
   if(S.tab==="people"){ renderStats(); renderPeople(); } else { renderEvents(); }
 }
 
-/* ---------- filters ---------- */
 function renderFilters(){
   var el=$("#filters"); var h='<span class="lbl">Status</span>';
   STATUSES.forEach(function(s){
@@ -377,15 +352,14 @@ function renderFilters(){
 }
 function toggleSet(set,v){ set.has(v)?set.delete(v):set.add(v); }
 
-/* ---------- stats ---------- */
 function renderStats(){
   var p=S.people;
   var inprog = p.filter(function(x){return ["Reached out","Awaiting reply","Meeting scheduled"].indexOf(x.Status)>=0;}).length;
   var cards=[
-    {n:p.length,l:"Total na rede",c:"var(--ink-3)"},
-    {n:p.filter(function(x){return !x.Status||x.Status==="Not started";}).length,l:"Não iniciado",c:ST_COLOR["Not started"]},
-    {n:inprog,l:"Em andamento",c:ST_COLOR["Reached out"]},
-    {n:p.filter(function(x){return x.Status==="Met";}).length,l:"Já reuniu",c:ST_COLOR["Met"]},
+    {n:p.length,l:"Total in network",c:"var(--ink-3)"},
+    {n:p.filter(function(x){return !x.Status||x.Status==="Not started";}).length,l:"Not started",c:ST_COLOR["Not started"]},
+    {n:inprog,l:"In progress",c:ST_COLOR["Reached out"]},
+    {n:p.filter(function(x){return x.Status==="Met";}).length,l:"Met",c:ST_COLOR["Met"]},
     {n:p.filter(function(x){return x.Status==="Follow-up needed";}).length,l:"Follow-up",c:ST_COLOR["Follow-up needed"]}
   ];
   $("#stats").innerHTML=cards.map(function(c){
@@ -393,7 +367,6 @@ function renderStats(){
   }).join("");
 }
 
-/* ---------- people filtering ---------- */
 function filtered(){
   var q=S.q;
   return S.people.filter(function(p){
@@ -417,21 +390,20 @@ function sortList(list){
 function renderPeople(){
   var el=$("#peopleContent");
   var list=sortList(filtered());
-  if(!list.length){ el.innerHTML='<div class="tablewrap"><div class="empty"><div class="big">Nada aqui</div>Ajusta os filtros ou adiciona alguém.</div></div>'; return; }
+  if(!list.length){ el.innerHTML='<div class="tablewrap"><div class="empty"><div class="big">Nothing here</div>Adjust the filters or add someone.</div></div>'; return; }
   S.view==="kanban" ? renderKanban(el) : renderTable(el,list);
 }
 
-/* ---------- table ---------- */
 function th(key,label,cls){
   var ar = S.sortKey===key ? (S.sortDir>0?" ▲":" ▼") : "";
   return '<th class="'+(cls||"")+'" data-k="'+key+'">'+label+'<span class="ar">'+ar+'</span></th>';
 }
 function renderTable(el,list){
   var h='<div class="tablewrap"><table><thead><tr>'
-    + th("Name","Nome") + th("Company","Empresa") + th("Status","Status")
-    + th("Owner","Owner") + th("Source","Fonte","")
-    + '<th class="no">Próximo passo</th>' + th("Follow-up date","Follow-up","nowrap")
-    + th("Last contact","Últ. contato","nowrap")
+    + th("Name","Name") + th("Company","Company") + th("Status","Status")
+    + th("Owner","Owner") + th("Source","Source","")
+    + '<th class="no">Next step</th>' + th("Follow-up date","Follow-up","nowrap")
+    + th("Last contact","Last contact","nowrap")
     + '</tr></thead><tbody>';
   list.forEach(function(p){
     h+='<tr data-id="'+esc(p.id)+'">'
@@ -455,7 +427,7 @@ function renderTable(el,list){
 }
 function statusSelect(p){
   var cur=p.Status||"Not started";
-  var opts=STATUSES.slice(); if(opts.indexOf(cur)<0) opts.push(cur);   // keep off-list values, no silent overwrite
+  var opts=STATUSES.slice(); if(opts.indexOf(cur)<0) opts.push(cur);
   var col=ST_COLOR[cur]||"var(--ink-3)";
   var o=opts.map(function(s){return '<option value="'+esc(s)+'"'+(s===cur?" selected":"")+'>'+esc(s)+'</option>';}).join("");
   return '<select class="statuscell" data-id="'+esc(p.id)+'" style="border-color:'+col+';color:'+col+'">'+o+'</select>';
@@ -467,7 +439,6 @@ function wireStatusSelects(scope){
 }
 function dateCell(v){ if(!v) return '<span class="muted">—</span>'; return esc(v); }
 
-/* ---------- kanban ---------- */
 function renderKanban(el){
   var list=filtered();
   var h='<div class="kanban">';
@@ -505,7 +476,6 @@ function wireDnD(el){
   });
 }
 
-/* ---------- inline field update ---------- */
 function setField(id,key,val){
   var p=byId(id); if(!p) return;
   var prev=p[key]; p[key]=val;
@@ -515,10 +485,9 @@ function setField(id,key,val){
   }).catch(function(e){ p[key]=prev; renderStats(); renderPeople(); toast(e.message,true); });
 }
 
-/* ---------- drawer: person ---------- */
 function openPerson(p){
   S.editType="person"; S.editing = p ? Object.assign({},p) : blankPerson();
-  $("#drawerTitle").textContent = p ? (p.Name||"Editar") : "Nova pessoa";
+  $("#drawerTitle").textContent = p ? (p.Name||"Edit") : "New person";
   $("#drawerDelete").style.display = p ? "block":"none";
   $("#drawerBody").innerHTML = personForm(S.editing);
   openDrawer();
@@ -526,43 +495,41 @@ function openPerson(p){
 function blankPerson(){ return {Status:"Not started",Owner:"Unassigned",Source:"Jackie network"}; }
 function personForm(p){
   return ''
-  + f("Name","Nome", inp("Name",p.Name))
-  + row(f("Company","Empresa",inp("Company",p.Company)), f("Role","Cargo",inp("Role",p.Role)))
+  + f("Name","Name", inp("Name",p.Name))
+  + row(f("Company","Company",inp("Company",p.Company)), f("Role","Role",inp("Role",p.Role)))
   + row(f("Email","Email",inp("Email",p.Email,"email")), f("LinkedIn","LinkedIn",inp("LinkedIn",p.LinkedIn)))
   + row(f("Status","Status",sel("Status",STATUSES,p.Status||"Not started")), f("Owner","Owner",sel("Owner",OWNERS,p.Owner||"Unassigned")))
-  + row(f("Source","Fonte",sel("Source",SOURCES,p.Source||"Jackie network")), f("Priority","Prioridade",sel("Priority",PRIOS,p.Priority||"")))
-  + row(f("Warmth","Warmth",sel("Warmth",WARMTH,p.Warmth||"")), f("Where met","Onde conheceu",inp("Where met",p["Where met"])))
-  + row(f("Last contact","Últ. contato",inp("Last contact",p["Last contact"],"date")), f("Follow-up date","Follow-up",inp("Follow-up date",p["Follow-up date"],"date")))
-  + f("Next step","Próximo passo",inp("Next step",p["Next step"]))
-  + f("JC Comments","Comentário Jackie",ta("JC Comments",p["JC Comments"]))
-  + f("Notes","Notas",ta("Notes",p.Notes));
+  + row(f("Source","Source",sel("Source",SOURCES,p.Source||"Jackie network")), f("Priority","Priority",sel("Priority",PRIOS,p.Priority||"")))
+  + row(f("Warmth","Warmth",sel("Warmth",WARMTH,p.Warmth||"")), f("Where met","Where met",inp("Where met",p["Where met"])))
+  + row(f("Last contact","Last contact",inp("Last contact",p["Last contact"],"date")), f("Follow-up date","Follow-up",inp("Follow-up date",p["Follow-up date"],"date")))
+  + f("Next step","Next step",inp("Next step",p["Next step"]))
+  + f("JC Comments","Jackie's comment",ta("JC Comments",p["JC Comments"]))
+  + f("Notes","Notes",ta("Notes",p.Notes));
 }
 
-/* ---------- drawer: event ---------- */
 function openEvent(ev){
   S.editType="event"; S.editing = ev ? Object.assign({},ev) : {Owner:"Jackie",Type:"Lunch"};
-  $("#drawerTitle").textContent = ev ? (ev.Event||"Editar") : "Novo evento";
+  $("#drawerTitle").textContent = ev ? (ev.Event||"Edit") : "New event";
   $("#drawerDelete").style.display = ev ? "block":"none";
   $("#drawerBody").innerHTML = eventForm(S.editing);
   openDrawer();
 }
 function eventForm(e){
   return ''
-  + f("Event","Evento",inp("Event",e.Event))
-  + row(f("Date","Data",inp("Date",e.Date,"date")), f("Type","Tipo",sel("Type",EV_TYPES,e.Type||"Lunch")))
-  + row(f("Location","Local",inp("Location",e.Location)), f("Owner","Owner",sel("Owner",OWNERS,e.Owner||"Jackie")))
-  + f("People met","Pessoas (nomes, separados por vírgula)",ta("People met",e["People met"]))
-  + f("Follow-ups pending","Follow-ups pendentes",ta("Follow-ups pending",e["Follow-ups pending"]))
-  + f("Notes","Notas",ta("Notes",e.Notes));
+  + f("Event","Event",inp("Event",e.Event))
+  + row(f("Date","Date",inp("Date",e.Date,"date")), f("Type","Type",sel("Type",EV_TYPES,e.Type||"Lunch")))
+  + row(f("Location","Location",inp("Location",e.Location)), f("Owner","Owner",sel("Owner",OWNERS,e.Owner||"Jackie")))
+  + f("People met","People met (comma-separated names)",ta("People met",e["People met"]))
+  + f("Follow-ups pending","Follow-ups pending",ta("Follow-ups pending",e["Follow-ups pending"]))
+  + f("Notes","Notes",ta("Notes",e.Notes));
 }
 
-/* form helpers */
 function f(key,label,control){ return '<div class="field"><label>'+esc(label)+'</label>'+control+'</div>'; }
 function row(a,b){ return '<div class="grid2">'+a+b+'</div>'; }
 function inp(key,val,type){ return '<input data-k="'+esc(key)+'" type="'+(type||"text")+'" value="'+esc(val||"")+'">'; }
 function ta(key,val){ return '<textarea data-k="'+esc(key)+'">'+esc(val||"")+'</textarea>'; }
 function sel(key,opts,cur){
-  var list=opts.slice(); if(cur && list.indexOf(cur)<0) list.push(cur);  // preserve off-list value on save
+  var list=opts.slice(); if(cur && list.indexOf(cur)<0) list.push(cur);
   return '<select data-k="'+esc(key)+'">'+list.map(function(o){
     return '<option value="'+esc(o)+'"'+(o===cur?" selected":"")+'>'+(o===""?"—":esc(o))+'</option>';
   }).join("")+'</select>';
@@ -575,11 +542,11 @@ function collectForm(){
 }
 function saveDrawer(){
   var btn=$("#drawerSave");
-  if(btn.disabled) return;                       // guard double-submit -> no dup rows
+  if(btn.disabled) return;
   var obj=collectForm();
   var isPerson=S.editType==="person";
-  if(isPerson && !(obj.Name||"").trim()){ toast("Nome é obrigatório",true); return; }
-  if(!isPerson && !(obj.Event||"").trim()){ toast("Nome do evento é obrigatório",true); return; }
+  if(isPerson && !(obj.Name||"").trim()){ toast("Name is required",true); return; }
+  if(!isPerson && !(obj.Event||"").trim()){ toast("Event name is required",true); return; }
   btn.disabled=true; btn.textContent="…";
   var action=isPerson?"upsertPerson":"upsertEvent";
   var key=isPerson?"person":"event";
@@ -589,28 +556,27 @@ function saveDrawer(){
     var arr=isPerson?S.people:S.events;
     var i=arr.findIndex(function(x){return x.id===saved.id;});
     if(i>=0) arr[i]=saved; else arr.push(saved);
-    closeDrawer(); render(); toast("Salvo");
-  }).catch(function(e){ toast(e.message,true); }).finally(function(){ btn.disabled=false; btn.textContent="Salvar"; });
+    closeDrawer(); render(); toast("Saved");
+  }).catch(function(e){ toast(e.message,true); }).finally(function(){ btn.disabled=false; btn.textContent="Save"; });
 }
 function deleteCurrent(){
   var obj=S.editing; if(!obj || !obj.id){ closeDrawer(); return; }
-  if(!confirm("Excluir "+(obj.Name||obj.Event||"este item")+"?")) return;
+  if(!confirm("Delete "+(obj.Name||obj.Event||"this item")+"?")) return;
   var isPerson=S.editType==="person";
   api(isPerson?"deletePerson":"deleteEvent",{id:obj.id}).then(function(){
     var arr=isPerson?S.people:S.events;
     var i=arr.findIndex(function(x){return x.id===obj.id;}); if(i>=0) arr.splice(i,1);
-    closeDrawer(); render(); toast("Excluído");
+    closeDrawer(); render(); toast("Deleted");
   }).catch(function(e){ toast(e.message,true); });
 }
 function openDrawer(){ $("#drawer").classList.add("on"); $("#scrim").classList.add("on"); }
 function closeDrawer(){ $("#drawer").classList.remove("on"); $("#scrim").classList.remove("on"); S.editing=null; }
 
-/* ---------- events tab ---------- */
 function renderEvents(){
   var el=$("#eventsContent");
-  if(!S.events.length){ el.innerHTML='<div class="tablewrap"><div class="empty"><div class="big">Sem eventos ainda</div>Registra um breakfast/lunch e linka as pessoas que conheceu.</div></div>'; return; }
+  if(!S.events.length){ el.innerHTML='<div class="tablewrap"><div class="empty"><div class="big">No events yet</div>Log a breakfast/lunch and link the people you met.</div></div>'; return; }
   var list=S.events.slice().sort(function(a,b){ return (b.Date||"").localeCompare(a.Date||""); });
-  var h='<div class="tablewrap"><table><thead><tr><th class="no">Evento</th><th class="no nowrap">Data</th><th class="no">Tipo</th><th class="no">Local</th><th class="no">Pessoas</th><th class="no">Owner</th><th class="no">Follow-ups</th></tr></thead><tbody>';
+  var h='<div class="tablewrap"><table><thead><tr><th class="no">Event</th><th class="no nowrap">Date</th><th class="no">Type</th><th class="no">Location</th><th class="no">People</th><th class="no">Owner</th><th class="no">Follow-ups</th></tr></thead><tbody>';
   list.forEach(function(e){
     h+='<tr><td><div class="name" data-ev="'+esc(e.id)+'">'+esc(e.Event||"—")+'</div></td>'
       + '<td class="nowrap muted">'+esc(e.Date||"—")+'</td>'
@@ -625,7 +591,6 @@ function renderEvents(){
   el.querySelectorAll(".name[data-ev]").forEach(function(n){ n.onclick=function(){ openEvent(evById(n.dataset.ev)); }; });
 }
 
-/* ---------- utils ---------- */
 function byId(id){ return S.people.find(function(p){return p.id===id;}); }
 function evById(id){ return S.events.find(function(e){return e.id===id;}); }
 function merge(t,s){ for(var k in s) t[k]=s[k]; }
